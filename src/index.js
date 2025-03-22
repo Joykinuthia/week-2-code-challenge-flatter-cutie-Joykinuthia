@@ -14,6 +14,19 @@ document.addEventListener("DOMContentLoaded",() =>{
     const resetButton = document.getElementById("reset-btn");
 })
     let currentSelectedCharacter = null;
+
+// fetch characters
+    function fetchCharacters() {
+        fetch("http://localhost:3000/characters")
+        .then(response => response.json())
+        .then(data => {
+            characterBar.innerHTML = "";
+            data.forEach(character => 
+                displayCharacterInBar(character));
+        })
+        .catch(error => console.error("Error fetching characters:", error));
+
+    }
    
     
     
