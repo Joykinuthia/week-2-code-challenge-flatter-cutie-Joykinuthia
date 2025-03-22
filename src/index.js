@@ -63,6 +63,8 @@ document.addEventListener("DOMContentLoaded",() =>{
         body:JSON.stringify({votes: 0})
     })
     .catch(error => console.error("error resetting votes:",error))
+
+    votesInput.value = "";
     
     
     
