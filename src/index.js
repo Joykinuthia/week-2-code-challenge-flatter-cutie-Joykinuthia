@@ -98,7 +98,13 @@ document.addEventListener("DOMContentLoaded",() =>{
     })
     .then(response => response.json())
     .then(data => {
-        
+        const span = document.createElement("span");
+        span.textContent = data.name;
+        span,dataset.id = data.id;
+        span.addEventListener("click", () =>
+        displayCharacterDetails(data));
+        characterBar.appendChild(span);
+
     })
     
     
