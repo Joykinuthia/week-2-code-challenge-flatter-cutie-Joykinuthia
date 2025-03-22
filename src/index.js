@@ -60,9 +60,9 @@ document.addEventListener("DOMContentLoaded",() =>{
     fetch(`http://localhost:3000/characters/${currentSelectedCharacter.id}`, {
         method:"PATCH",
         headers: {"Content-Type":"application/json"},
-        body:JSON.stringify({votes: 0})
+        body:JSON.stringify({votes: currentSelectedCharacter.votes})
     })
-    .catch(error => console.error("error resetting votes:",error))
+    .catch(error => console.error("Error updating votes:",error))
 
     votesInput.value = "";
 
@@ -71,6 +71,14 @@ document.addEventListener("DOMContentLoaded",() =>{
         currentSelectedCharacter.votes = 0;
         voteCount.textContent = 0;
     })
+
+    fetch(`http://localhost:3000/characters/${currentSelectedCharacter.id}`,{
+        method:"PATCH",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({votes: 0})
+    })
+
+.catch(error => console.error("Error resetting votes:",error))
     
     
     
