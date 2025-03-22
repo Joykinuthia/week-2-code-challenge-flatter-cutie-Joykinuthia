@@ -38,6 +38,14 @@ document.addEventListener("DOMContentLoaded",() =>{
     displayCharacterDetails(character));
         character.appendChild(span);
     }
+
+// displaying character details
+    function displayCharacterDetails(character) {
+        currentSelectedCharacter = character;
+        nameElement.textContent = character.name;
+        imageElement.src = character.image;
+        voteCount.textContent = character.votes;
+    }
    
     
     
