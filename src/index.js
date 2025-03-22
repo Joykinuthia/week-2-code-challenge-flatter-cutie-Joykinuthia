@@ -108,6 +108,9 @@ document.addEventListener("DOMContentLoaded",() =>{
         displayCharacter(data);
     })
     .catch(error => console.error("Error adding new character",error));
+
+    nameInput.value = "";
+    imageUrlInput.value = "";
     
     
     
