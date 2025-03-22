@@ -111,6 +111,9 @@ document.addEventListener("DOMContentLoaded",() =>{
 
     nameInput.value = "";
     imageUrlInput.value = "";
+
+
+    fetchCharacters();
     
     
     
