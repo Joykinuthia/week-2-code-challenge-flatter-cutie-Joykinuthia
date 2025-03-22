@@ -65,6 +65,12 @@ document.addEventListener("DOMContentLoaded",() =>{
     .catch(error => console.error("error resetting votes:",error))
 
     votesInput.value = "";
+
+    resetButton.addEventListener("click",() => {
+        if(!currentSelectedCharacter) return;
+        currentSelectedCharacter.votes = 0;
+        voteCount.textContent = 0;
+    })
     
     
     
