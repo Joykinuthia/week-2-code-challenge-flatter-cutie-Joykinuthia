@@ -55,6 +55,14 @@ document.addEventListener("DOMContentLoaded",() =>{
         currentSelectedCharacter.votes += addedVotes;
         voteCount.textContent = currentSelectedCharacter.votes;
     })
+
+//updating the server
+    fetch(`http://localhost:3000/characters/${currentSelectedCharacter.id}`, {
+        method:"PATCH",
+        headers: {"Content-Type":"application/json"},
+        body:JSON.stringify({votes: 0})
+    })
+    .catch(error => console.error("error resetting votes:",error))
     
     
     
