@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded",() =>{
     const imageUrlInput = document.getElementById("image-url");
     const resetButton = document.getElementById("reset-btn");
 })
-    
+    let currentSelectedCharacter = null;
    
     
     
