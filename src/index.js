@@ -105,6 +105,8 @@ document.addEventListener("DOMContentLoaded",() =>{
         displayCharacterDetails(data));
         characterBar.appendChild(span);
 
+        displayCharacter(data);
+
     })
     
     
