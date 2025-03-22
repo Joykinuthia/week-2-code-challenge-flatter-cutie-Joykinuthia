@@ -79,6 +79,12 @@ document.addEventListener("DOMContentLoaded",() =>{
     })
 
 .catch(error => console.error("Error resetting votes:",error))
+
+// new character submission
+    characterForm.addEventListener("submit", event => {
+        event.preventDefault();
+        
+    })
     
     
     
