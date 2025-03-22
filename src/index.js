@@ -47,6 +47,14 @@ document.addEventListener("DOMContentLoaded",() =>{
         voteCount.textContent = character.votes;
     }
    
+// handling submission of votes
+    votesForm.addEventListener("submit", event => {
+        event.preventDefault();
+        if(!currentSelectedCharacter)return;
+        const addedVotes = parseInt(votesInput.value,10) || 0;
+        currentSelectedCharacter.votes += addedVotes;
+        voteCount.textContent = currentSelectedCharacter.votes;
+    })
     
     
     
