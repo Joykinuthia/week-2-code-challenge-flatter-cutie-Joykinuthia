@@ -27,6 +27,17 @@ document.addEventListener("DOMContentLoaded",() =>{
         .catch(error => console.error("Error fetching characters:", error));
 
     }
+
+// displaying character name
+    function displayCharacterInBar(character) {
+        const span = document.createElement("span");
+        span.textContent = character.name;
+        span.dataset.id = character.id;
+        span.style.cursor = "pointer";
+        span.addEventListener("click", () => 
+    displayCharacterDetails(character));
+        character.appendChild(span);
+    }
    
     
     
