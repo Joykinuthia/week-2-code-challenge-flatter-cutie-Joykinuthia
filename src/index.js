@@ -83,10 +83,23 @@ document.addEventListener("DOMContentLoaded",() =>{
 // new character submission
     characterForm.addEventListener("submit", event => {
         event.preventDefault();
-        
+
+        const newCharacter = {
+            name: nameInput.value,
+            image: imageUrlInput.value,
+            votes: 0
+        }  
     })
     
-    
+    fetch("http://localhost:3000/characters",{
+        method:"POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(newCharacter)
+    })
+    .then(response => response.json())
+    .then(data => {
+        
+    })
     
     
     
