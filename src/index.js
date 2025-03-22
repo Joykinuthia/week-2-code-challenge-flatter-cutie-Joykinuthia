@@ -106,8 +106,8 @@ document.addEventListener("DOMContentLoaded",() =>{
         characterBar.appendChild(span);
 
         displayCharacter(data);
-
     })
+    .catch(error => console.error("Error adding new character",error));
     
     
     
