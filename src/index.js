@@ -2,7 +2,7 @@
 // Base URL for the local JSON server (the "database" for our characters)
 const baseURL = "http://localhost:3000/characters";
 
-    // Grabbing references to HTML elements using their IDs
+// Grabbing references to HTML elements using their IDs
 
     const characterBar = document.getElementById("character-bar"); 
     const detailedInfo = document.getElementById("detailed-info"); 
@@ -16,7 +16,8 @@ const baseURL = "http://localhost:3000/characters";
     const newCharName = document.getElementById("new-character-name");   
     const newCharImage = document.getElementById("new-character-image"); 
 
-    let currentSelectedCharacter = null;
+// We'll store whichever character is currently selected in this variable
+    let currentCharacter = null;
 
     // Fetch characters
     function fetchCharacters() {
