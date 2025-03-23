@@ -73,5 +73,15 @@ votesForm.addEventListener("submit", e => {
     }
   });
     
-    
+   /*
+  resetBtn click event:Sets the currentCharacter's votes to 0 & Updates the displayed votes to 0.
+*/
+resetBtn.addEventListener("click", () => {
+    if (currentCharacter) {
+      currentCharacter.votes = 0;
+      voteCountElem.textContent = 0;
+      updateCharacterVotes(currentCharacter);
+    }
+  });
+   
     
