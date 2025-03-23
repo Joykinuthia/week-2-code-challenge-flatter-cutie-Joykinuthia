@@ -1,86 +1,74 @@
 // Your code here
-document.addEventListener("DOMContentLoaded",() =>{
-    const characterBar = document.getElementById("character-bar");
-    const characterForm = document.getElementById("character-form");
-    const detailedInfo = document.getElementById("detailed-info");
-    const imageElement = document.getElementById("image");
-    const nameElement = detailedInfo.querySelector("p");
-    const nameInput = document.getElementById("name");
-    const votesInput = document.getElementById("votes");
-    const votesForm = document.getElementById("votes-form");
-    const voteCount = document.getElementById("vote-count");
-    const characterName = document.getElementById("name");
-    const imageUrlInput = document.getElementById("image-url");
-    const resetButton = document.getElementById("reset-btn");
-})
+// Base URL for the local JSON server (the "database" for our characters)
+const baseURL = "http://localhost:3000/characters";
+
     let currentSelectedCharacter = null;
 
-// fetch characters
+    // Fetch characters
     function fetchCharacters() {
         fetch("http://localhost:3000/characters")
-        .then(response => response.json())
-        .then(data => {
-            characterBar.innerHTML = "";
-            data.forEach(character => 
-                displayCharacterInBar(character));
-        })
-        .catch(error => console.error("Error fetching characters:", error));
-
+            .then(response => response.json())
+            .then(data => {
+                characterBar.innerHTML = "";
+                data.forEach(character => displayCharacterInBar(character));
+            })
+            .catch(error => console.error("Error fetching characters:", error));
     }
 
-// displaying character name
+    // Displaying character in character bar
     function displayCharacterInBar(character) {
         const span = document.createElement("span");
         span.textContent = character.name;
         span.dataset.id = character.id;
         span.style.cursor = "pointer";
-        span.addEventListener("click", () => 
-    displayCharacterDetails(character));
-        character.appendChild(span);
+        span.addEventListener("click", () => displayCharacterDetails(character));
+        characterBar.appendChild(span); 
     }
 
-// displaying character details
+    // Displaying character details
     function displayCharacterDetails(character) {
         currentSelectedCharacter = character;
         nameElement.textContent = character.name;
         imageElement.src = character.image;
         voteCount.textContent = character.votes;
     }
-   
-// handling submission of votes
+
+    // Handling submission of votes
     votesForm.addEventListener("submit", event => {
         event.preventDefault();
-        if(!currentSelectedCharacter)return;
-        const addedVotes = parseInt(votesInput.value,10) || 0;
+        if (!currentSelectedCharacter) return;
+
+        const addedVotes = parseInt(votesInput.value, 10) || 0;
         currentSelectedCharacter.votes += addedVotes;
         voteCount.textContent = currentSelectedCharacter.votes;
-    })
 
-//updating the server
-    fetch(`http://localhost:3000/characters/${currentSelectedCharacter.id}`, {
-        method:"PATCH",
-        headers: {"Content-Type":"application/json"},
-        body:JSON.stringify({votes: currentSelectedCharacter.votes})
-    })
-    .catch(error => console.error("Error updating votes:",error))
+        // Updating the server
+        fetch(`http://localhost:3000/characters/${currentSelectedCharacter.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ votes: currentSelectedCharacter.votes })
+        })
+        .catch(error => console.error("Error updating votes:", error));
 
-    votesInput.value = "";
+        votesInput.value = "";
+    });
 
-    resetButton.addEventListener("click",() => {
-        if(!currentSelectedCharacter) return;
+    // Resetting votes
+    resetButton.addEventListener("click", () => {
+        if (!currentSelectedCharacter) return;
         currentSelectedCharacter.votes = 0;
         voteCount.textContent = 0;
-    })
 
-    fetch(`http://localhost:3000/characters/${currentSelectedCharacter.id}`,{
-        method:"PATCH",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({votes: 0})
-    })
+        // Updating the server to reset votes
+        fetch(`http://localhost:3000/characters/${currentSelectedCharacter.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ votes: 0 })
+        })
+        .catch(error => console.error("Error resetting votes:", error));
+    });
 
-.catch(error => console.error("Error resetting votes:",error))
-
-// new character submission
+    // New character submission
     characterForm.addEventListener("submit", event => {
         event.preventDefault();
 
@@ -88,32 +76,33 @@ document.addEventListener("DOMContentLoaded",() =>{
             name: nameInput.value,
             image: imageUrlInput.value,
             votes: 0
-        }  
-    })
-    
-    fetch("http://localhost:3000/characters",{
-        method:"POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(newCharacter)
-    })
-    .then(response => response.json())
-    .then(data => {
-        const span = document.createElement("span");
-        span.textContent = data.name;
-        span,dataset.id = data.id;
-        span.addEventListener("click", () =>
-        displayCharacterDetails(data));
-        characterBar.appendChild(span);
+        };
 
-        displayCharacter(data);
-    })
-    .catch(error => console.error("Error adding new character",error));
+        fetch("http://localhost:3000/characters", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newCharacter)
+        })
+        .then(response => response.json())
+        .then(data => {
+            const span = document.createElement("span");
+            span.textContent = data.name;
+            span.dataset.id = data.id; 
+            span.addEventListener("click", () => displayCharacterDetails(data));
+            characterBar.appendChild(span);
+            displayCharacterDetails(data);
+        })
+        .catch(error => console.error("Error adding new character:", error));
 
-    nameInput.value = "";
-    imageUrlInput.value = "";
+        // Resetting the form fields
+        nameInput.value = "";
+        imageUrlInput.value = "";
+    });
 
-
+    // Fetch all characters on page load
     fetchCharacters();
+});
+
     
     
     
