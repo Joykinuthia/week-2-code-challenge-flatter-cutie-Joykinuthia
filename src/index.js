@@ -50,7 +50,6 @@ function renderCharacterBar(char) {
 
   /*
   showCharacterDetails:Saves the clicked character object to currentCharacter
-  2) Updates the name, image, and vote count in the #detailed-info section using the data from the character.
 */
 function showCharacterDetails(char) {
     currentCharacter = char;
@@ -59,6 +58,20 @@ function showCharacterDetails(char) {
     imageElem.alt = char.name;
     voteCountElem.textContent = char.votes;
   }
+
+  /*
+  Event listener for the #votes-form submission:
+*/
+votesForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const votesToAdd = parseInt(votesInput.value);
+    if (!isNaN(votesToAdd) && currentCharacter) {
+      currentCharacter.votes += votesToAdd;
+      voteCountElem.textContent = currentCharacter.votes;
+      updateCharacterVotes(currentCharacter);
+      votesInput.value = "";
+    }
+  });
     
     
     
