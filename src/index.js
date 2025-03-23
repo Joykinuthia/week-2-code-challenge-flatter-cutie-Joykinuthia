@@ -130,4 +130,7 @@ function updateCharacterVotes(char) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ votes: char.votes })
     })
+    then(r => r.json())
+  .catch(err => console.log(err));
+}
     
