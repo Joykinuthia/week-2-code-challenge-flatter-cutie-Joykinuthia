@@ -133,4 +133,7 @@ function updateCharacterVotes(char) {
     then(r => r.json())
   .catch(err => console.log(err));
 }
+
+// Initialize the page by fetching all characters
+getAllCharacters();
     
