@@ -103,3 +103,19 @@ if (newCharForm) {
           image: characterImage,
           votes: 0
         };
+        fetch(baseURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newCharacter)
+          })
+          .then(r => r.json())
+          .then(savedCharacter => {
+            renderCharacterBar(savedCharacter);
+            showCharacterDetails(savedCharacter);
+          });
+          newCharName.value = "";
+          newCharImage.value = "";
+        }
+      });
+    }
+    
