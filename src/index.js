@@ -16,8 +16,25 @@ const baseURL = "http://localhost:3000/characters";
     const newCharName = document.getElementById("new-character-name");   
     const newCharImage = document.getElementById("new-character-image"); 
 
-// We'll store whichever character is currently selected in this variable
+// Store whichever character currently selected in this variable
     let currentCharacter = null;
+
+    /*
+  getAllCharacters: Fetches the list of characters from our JSON server.
+  2) Iterates over the data and calls renderCharacterBar to display each name in the "character-bar" section.
+  3) Automatically shows the details of the first character (optional).
+*/
+function getAllCharacters() {
+    fetch(baseURL)
+      .then(r => r.json())
+      .then(data => {
+        data.forEach(renderCharacterBar);
+        if (data.length > 0) {
+          showCharacterDetails(data[0]);
+        }
+      });
+  }
+  
 
     // Fetch characters
     function fetchCharacters() {
