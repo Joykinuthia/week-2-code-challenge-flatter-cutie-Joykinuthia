@@ -84,4 +84,22 @@ resetBtn.addEventListener("click", () => {
     }
   });
    
-    
+    /*
+  newCharForm event listener:
+  1) Collects the name and image URL from the form inputs.
+  2) Sends a POST request to the JSON server to create a new character with 0 votes.
+  3) Adds the new character to the character bar by calling renderCharacterBar.
+  4) Immediately displays the new character's details by calling showCharacterDetails.
+  5) Clears the form fields.
+*/
+if (newCharForm) {
+    newCharForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const characterName = newCharName.value;
+      const characterImage = newCharImage.value;
+      if (characterName && characterImage) {
+        const newCharacter = {
+          name: characterName,
+          image: characterImage,
+          votes: 0
+        };
