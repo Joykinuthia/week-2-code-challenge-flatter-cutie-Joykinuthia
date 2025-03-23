@@ -35,7 +35,7 @@ function getAllCharacters() {
   
 
     /*
-  renderCharacterBar:Creates a <span> element to hold the character's name & Adds a click event so when you click the nam
+  renderCharacterBar:Creates <span> element to hold the character's name & Adds a click event so when you click the nam
 */
 function renderCharacterBar(char) {
     const span = document.createElement("span");
@@ -47,6 +47,18 @@ function renderCharacterBar(char) {
     characterBar.appendChild(span);
   }
   
+
+  /*
+  showCharacterDetails:Saves the clicked character object to currentCharacter
+  2) Updates the name, image, and vote count in the #detailed-info section using the data from the character.
+*/
+function showCharacterDetails(char) {
+    currentCharacter = char;
+    nameElem.textContent = char.name;
+    imageElem.src = char.image;
+    imageElem.alt = char.name;
+    voteCountElem.textContent = char.votes;
+  }
     
     
     
