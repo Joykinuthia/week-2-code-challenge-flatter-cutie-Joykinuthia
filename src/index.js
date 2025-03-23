@@ -2,6 +2,20 @@
 // Base URL for the local JSON server (the "database" for our characters)
 const baseURL = "http://localhost:3000/characters";
 
+    // Grabbing references to HTML elements using their IDs
+
+    const characterBar = document.getElementById("character-bar"); 
+    const detailedInfo = document.getElementById("detailed-info"); 
+    const nameElem = document.getElementById("name");              
+    const imageElem = document.getElementById("image");            
+    const voteCountElem = document.getElementById("vote-count");   
+    const votesForm = document.getElementById("votes-form");       
+    const votesInput = document.getElementById("votes");           
+    const resetBtn = document.getElementById("reset-btn");         
+    const newCharForm = document.getElementById("character-form"); 
+    const newCharName = document.getElementById("new-character-name");   
+    const newCharImage = document.getElementById("new-character-image"); 
+
     let currentSelectedCharacter = null;
 
     // Fetch characters
