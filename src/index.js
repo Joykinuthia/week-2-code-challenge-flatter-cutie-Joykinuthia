@@ -118,4 +118,16 @@ if (newCharForm) {
         }
       });
     }
+
+    /*
+  updateCharacterVotes:
+  1) Uses a PATCH request to update the "votes" property for the current character in the db.json file.
+  2) This ensures the votes are persisted even if the page reloads.
+*/
+function updateCharacterVotes(char) {
+    fetch(${baseURL}/${char.id}, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ votes: char.votes })
+    })
     
