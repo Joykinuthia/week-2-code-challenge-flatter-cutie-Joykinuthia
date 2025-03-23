@@ -1,8 +1,8 @@
 // Your code here
-// Base URL for the local JSON server (the "database" for our characters)
+    // Base URL for the local JSON server (the "database" for our characters)
 const baseURL = "http://localhost:3000/characters";
 
-// Grabbing references to HTML elements using their IDs
+    // Grabbing references to HTML elements using their IDs
 
     const characterBar = document.getElementById("character-bar"); 
     const detailedInfo = document.getElementById("detailed-info"); 
@@ -16,7 +16,7 @@ const baseURL = "http://localhost:3000/characters";
     const newCharName = document.getElementById("new-character-name");   
     const newCharImage = document.getElementById("new-character-image"); 
 
-// Store whichever character currently selected in this variable
+    // Store whichever character currently selected in this variable
     let currentCharacter = null;
 
     /*
@@ -86,11 +86,6 @@ resetBtn.addEventListener("click", () => {
    
     /*
   newCharForm event listener:
-  1) Collects the name and image URL from the form inputs.
-  2) Sends a POST request to the JSON server to create a new character with 0 votes.
-  3) Adds the new character to the character bar by calling renderCharacterBar.
-  4) Immediately displays the new character's details by calling showCharacterDetails.
-  5) Clears the form fields.
 */
 if (newCharForm) {
     newCharForm.addEventListener("submit", e => {
@@ -120,12 +115,10 @@ if (newCharForm) {
     }
 
     /*
-  updateCharacterVotes:
-  1) Uses a PATCH request to update the "votes" property for the current character in the db.json file.
-  2) This ensures the votes are persisted even if the page reloads.
+  updateCharacterVotes:Uses a PATCH request to update the "votes" property for the current character in the db.json file.
 */
 function updateCharacterVotes(char) {
-    fetch(${baseURL}/${char.id}, {
+    fetch(`${baseURL}/${char.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ votes: char.votes })
